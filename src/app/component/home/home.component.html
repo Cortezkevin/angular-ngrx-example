@@ -1,0 +1,33 @@
+<div class="note_container">
+    <div class="note_header">
+        <span class="title">Notes</span>
+        <button mat-raised-button color="primary" (click)="openDialog()">New Note</button>
+    </div>
+    <div class="note_list">
+        <div>
+            <mat-spinner *ngIf="(isLoading$ | async )"></mat-spinner>
+            <h3 *ngIf="!(isLoading$ | async ) && (noteList$ | async)?.length === 0">No tiene notas aun</h3>
+        </div>
+
+        <mat-card class="note_card" *ngFor="let note of (noteList$ | async)">
+            <mat-card-header>
+                <mat-card-title>{{ note.title }}</mat-card-title>
+                <mat-card-subtitle>{{ getDateFromTimestamp( note.createdAt ) }}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <p>{{ note.body }}</p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-icon-button color="accent" (click)="openDialog(note)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button [disabled]="isLoadingDeletion$ | async" mat-icon-button color="warn" (click)="deleteNote(note.id)">
+                    <mat-icon *ngIf="isLoadingDeletion$ | async" style="padding: 5px;"><mat-spinner diameter="20">
+                    </mat-spinner></mat-icon>
+                    <mat-icon *ngIf="!(isLoadingDeletion$ | async)" style="padding: 5px;">delete</mat-icon>
+                </button>
+            </mat-card-actions>
+        </mat-card>
+
+    </div>
+</div>

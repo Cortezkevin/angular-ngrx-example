@@ -1,0 +1,27 @@
+.note_container {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.note_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.note_card {
+    max-width: 400px;
+    min-width: 120px;
+}
+
+.note_list {
+    display: flex;
+    gap: 10px;
+}

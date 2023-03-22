@@ -1,0 +1,23 @@
+<h1 mat-dialog-title>{{data.title}} Note</h1>
+<div mat-dialog-content>
+  <form class="note_form" [formGroup]="noteForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill" >
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title">
+      <mat-error *ngIf="title.invalid">{{ getErrorMessage( title ) }}</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill" >
+      <mat-label>Body</mat-label>
+      <input matInput formControlName="body">
+      <mat-error *ngIf="body.invalid">{{ getErrorMessage( body ) }}</mat-error>
+    </mat-form-field>
+    <button type="submit" [disabled]="noteForm.invalid || (isLoading$ | async)" mat-raised-button color="primary" >
+      <mat-icon *ngIf="isLoading$ | async" style="padding: 5px;"><mat-spinner diameter="20">
+      </mat-spinner></mat-icon> {{ data.title }}
+    </button>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button mat-dialog-close cdkFocusInitial>Ok</button>
+</div>

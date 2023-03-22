@@ -1,0 +1,27 @@
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.auth_container {
+    width: 400px;
+    margin: 100px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.auth_title {
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.auth_form {
+    display: flex;
+    flex-direction: column;
+}
+
+.auth_form_actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

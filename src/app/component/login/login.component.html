@@ -1,0 +1,27 @@
+<mat-card class="auth_container animate__animated animate__fadeIn">
+    <mat-card-header>
+      <mat-card-title style="text-align: center;" class="auth_title">Welcome</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <form class="auth_form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <mat-form-field appearance="fill" >
+                <mat-label>Username</mat-label>
+                <input matInput formControlName="username">
+                <mat-error *ngIf="username.invalid">{{ getErrorMessage( username ) }}</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Password</mat-label>
+                <input matInput formControlName="password">
+                <mat-error *ngIf="password.invalid">{{ getErrorMessage( password ) }}</mat-error>
+            </mat-form-field>            
+            <div class="auth_form_actions">
+                <button type="submit" [disabled]="loginForm.invalid || (loading$ | async)" mat-raised-button color="primary" >
+                    <mat-icon *ngIf="loading$ | async" style="padding: 5px;"><mat-spinner diameter="20">
+                    </mat-spinner></mat-icon> Login
+                </button>
+                <button [routerLink]="['/register']" type="button" mat-raised-button>Register</button>
+                <button [routerLink]="['/forgot-password']" type="button" mat-button>Forgot password</button>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

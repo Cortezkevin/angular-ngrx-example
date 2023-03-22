@@ -1,0 +1,27 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button aria-label="Example icon-button with menu icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Note App</span>
+  <span class="example-spacer"></span>
+  <button *ngIf="!(isLogged$ | async)" mat-button aria-label="Example
+    icon-button with share icon" #tooltip="matTooltip"
+    matTooltip="Login"
+    [matTooltipPosition]="'below'"
+    [routerLink]="['/login']">
+    Login <mat-icon>login</mat-icon>
+  </button>
+  <div *ngIf="(isLogged$ | async)">
+    <mat-spinner [color]="'accent'" *ngIf="(isLoading$ | async)" diameter="20"></mat-spinner>
+    <span *ngIf="!(isLoading$ | async)">{{ (username$ | async) }}</span>
+  </div>
+  <button *ngIf="(isLogged$ | async)" mat-button aria-label="Example icon-button
+    with share icon" #tooltip="matTooltip"
+    matTooltip="Logout"
+    [matTooltipPosition]="'below'"
+    (click)="onLogout()">
+    Logout <mat-icon>logout</mat-icon>
+  </button>
+</mat-toolbar>
+
+<router-outlet></router-outlet>
